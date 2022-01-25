@@ -1,0 +1,26 @@
+<body>
+  <form method = "post" action = "">
+    <div class="col">
+      <h1>Sign in</h1>
+      <p>Please fill in this form to sign into your account.</p>
+      <hr>
+  
+      <div class="form-container">
+        <p><input type="text" [(ngModel)]="email" name="login" placeholder="Enter email . . . ." class = container></p>
+        <p><input type="password" [(ngModel)]="password" name="password" placeholder="Enter password . . . ." class = container></p> 
+        <p class="submit">
+        <button id="SignIn" (click)="signIn()" [disabled]="!email || !password">Sign In</button>
+        <button id="LogOut" (click)="signOut()" [disabled]="!signedIn">LogOut</button>
+        </p>
+
+        <div class="container signin">
+          <p>Dont have an account have an account? <a href="account/register">Register</a>.</p>
+        </div>
+
+        <div class="error">
+          {{errorMessage}}
+        </div>
+      </div>
+    </div>
+  </form>
+  </body>

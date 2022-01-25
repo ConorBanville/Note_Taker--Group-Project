@@ -1,0 +1,96 @@
+body {
+    margin: 20px;
+    padding-top: 70px;
+    background-color: #FDF7FA;
+}
+
+:host {
+    background-color: #FDF7FA;
+}
+
+
+#create,
+textarea {
+    float: left;
+    padding: 25px 25px 40px;
+    margin: 0 20px 20px 0;
+    width: 250px;
+    height: 250px;
+}
+
+#create {
+    padding: 20px;
+    border-radius: 20px;
+    text-align: center;
+    border: 15px solid black;
+    cursor: pointer;
+    color: black;
+    line-height: 200px;
+}
+
+textarea {
+    line-height: 1.5;
+    border: 0;
+    border-radius: 3px;
+    background: linear-gradient(#f9efaf, #f7e98d);
+    box-shadow: 0 5px 5px grey;
+    overflow: hidden;
+    transition: box-shadow 0.5s ease;
+    margin: 15;
+    border: 10px;
+    padding: 10px;
+    max-width: 500px;
+    max-height: 250px;
+    display: block;
+}
+
+.textarea-container {
+    position: relative;
+}
+
+.textarea-container button {
+    position: fixed;
+    line-height: 1;
+}
+
+div {
+    display: inline-block;
+    position: relative;
+}
+
+button {
+    position: fixed;
+    display: inline-block;
+    line-height: 1;
+}
+input {
+    position: fixed;
+    display: inline-block;
+}
+
+.textarea-container .modal button {
+    padding: 10px 10px 7px 6px;
+    background-color: #2988b9;
+    color: white;
+    border: none;
+    cursor: pointer;
+    margin-top: 1%;
+    font-size: 65%;
+}
+input {
+    width: 10%;
+    float: right;
+    top: 40%;
+}
+
+label {
+    margin: 10px;
+}
+
+textarea:hover {
+    box-shadow: 0 5px 5px black;
+}
+textarea:focus {
+    box-shadow: 0 5px 12px black;
+    outline: none;
+}

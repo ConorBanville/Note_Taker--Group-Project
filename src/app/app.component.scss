@@ -1,0 +1,10 @@
+@font-face {
+    font-family: OpenDyslexic;
+    src: url(../assets/fonts/open_dyslexic/OpenDyslexic-Regular.otf) format("opentype");
+}
+
+.loggedIn{
+    display: grid;
+    grid-template-columns: 5vw 1fr;
+    align-items: center;
+}

@@ -1,0 +1,31 @@
+<body>
+  <form method = "post" action = "">
+    <div class="col">
+      <h1>Register</h1>
+      <p>Please fill in this form to create an account.</p>
+      <hr>
+  
+      <div class="form-container">
+        <!-- Input Options-->
+        <p><input type="text" [(ngModel)]="emailAddress" name="login" placeholder="Enter email . . . ." class = container></p>
+        <p><input type="password" [(ngModel)]="password" name="password" placeholder="Enter password . . . ." class = container></p>
+        <p><input type="password" [(ngModel)]="displayName" name="password" placeholder="Pick a display name . . . ." class = container></p>  
+
+        <!-- Submission Section-->
+        <p class="submit">
+          <button id="Register" (click)="signup()" [disabled]="!emailAddress || !password || !displayName">Register</button>
+        </p>
+
+        <!-- Links Section-->
+        <div class="container signin">
+          <p>Already have an account? <a href="account/login">Sign in</a>.</p>
+        </div>
+
+        <!-- Error Message Section-->
+        <div class="error">
+          {{errorMessage}}
+        </div>
+      </div>
+    </div>
+  </form>
+</body>

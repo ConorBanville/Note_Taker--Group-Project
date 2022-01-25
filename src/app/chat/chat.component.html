@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+
+    <!-- container for the Jitsi meeting -->
+    <div id= "meet" class="meet" cdkDrag>
+        <div class="meet-handle" cdkDragHandle>
+            <svg width="24px" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M10 9h4V6h3l-5-5-5 5h3v3zm-1 1H6V7l-5 5 5 5v-3h3v-4zm14 2l-5-5v3h-3v4h3v3l5-5zm-9 3h-4v3H7l5 5 5-5h-3v-3z"></path>
+              <path d="M0 0h24v24H0z" fill="none"></path>
+            </svg>
+          </div>
+        <div id="meeting">
+        </div>
+        <img class="meet-hangup" (click)="meetEnd()" src="/assets/images/icons/phone-red.svg" alt="phone"/>
+    </div>
+
+    <!-- Some class/id names are not representitive of their purpose -->
+    <div id="chat-container">
+        <!-- This is the container for the file title (top right of the page) -->
+        <div class="file-title">{{ this_group_name }}'s Files</div>
+        <!-- container for the list of files -->
+        <div class="file-list">
+            <ul>
+                <div class="file-li" *ngFor="let file of groupFiles">
+                    <img #index id="file-icon" src="{{file.icon}}" alt="{{file.index}}">
+                    <li id="file-name" (click)="downloadFile(index.alt)">{{file.file_name}}</li>
+                    <p (click)="removeFile(index.alt)">X</p>
+                </div>
+            </ul>
+        </div>
+        <!-- container for the choose file input (bottom right of the page) -->
+        <div class="add-file">
+            <input type="file" (change)="uploadFiles($event)" accept="image/*,.pdf,.txt,.docx,.xlsx,.xlsm,.xlsb,.xltx"/>
+        </div>
+        <!-- container for the list of groups (leftmost of the page) -->
+        <div class="group-list-members">
+            <ul>
+                <div *ngFor="let doc of myGroups" class="group-li">
+                    <li #id (click)="switchGroup(id.id)" class="group-name" id="{{doc.id}}">{{ doc.name }}</li>
+                    <p (click)="removeGroup(id.id)">X</p>
+                </div>
+            </ul>
+        </div>
+        <!-- container for the input to create a new group (bottom left of page) -->
+        <div class="add-group">
+            <input id="new-group-modal" [(ngModel)]="new_group_name" (keydown.enter)="createGroup()" placeholder="Create a new group"/>
+            <p (click)=createGroup()>+</p>
+        </div>
+        <!-- This is the container for the title of the current group (above the members) -->
+        <div id="search-container">
+             {{ this_group_name }}
+        </div>
+        <!-- container for the list of members of the group -->
+        <div id="members-list">
+            <div>
+                <div *ngFor="let doc of memberNames">
+                    <div class="conversation" >
+                        <img src="/assets/images/profiles/default-1.png" alt="">
+                        <div #name id="{{doc}}" class="title-text"> {{ doc }} </div>
+                        <div class="created-date" (click)="removeMember(name.id)">X</div>
+                    </div>
+                </div>
+            </div>
+            <!-- Error message for when we can't find the member by the given name -->
+            <div id="error-no-user">{{error_msg}}</div>
+        </div>
+        <!-- container for the add new group member input -->
+        <div id="new-members-container">
+            <input id="new-member-modal" [(ngModel)]="new_member_name" (keydown.enter)="addMember()" placeholder="Add new group member"/>
+            <p (click)=addMember()>+</p>
+        </div>
+        <!-- container for the users name and the phone button -->
+        <div id="chat-title">
+            {{ thisUser }}
+            <img src="/assets/images/icons/phone.svg" (click)="startMeeting()" alt="phone"/>
+        </div>
+        <!-- container for the list of messages -->
+        <div id="chat-message-list">
+            <div *ngFor="let doc of messages">
+                <div class="{{'message-row '+ doc.style }}">
+                    <div class="message-text"> {{ doc.text }} </div>
+                    <div class="message-time"> {{doc.name}}, {{ doc.date }} </div>
+                </div>
+            </div>
+        </div>
+        <!-- container for the Type a message input -->
+        <div id="chat-form">
+            <img src="/assets/images/icons/icon-paperclip-3.svg" alt="Add Attachment">
+            <input type="text" placeholder="Type a message" [(ngModel)]="new_message" (keydown.enter)="submit()">
+            <img src="/assets/images/icons/icon-send-1.svg" alt="Send" (click)="submit()">
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,54 @@
+<!-- Your Notes Section -->
+<div class="container-fluid" style="display: flex;">
+	<div *ngFor="let doc of myNotes">
+		<div class = "card col-sm">
+			<div class="title">{{ doc.title }}</div><br>
+			<div class="text">{{ doc.text }}</div>
+			<div class="noteID" style="display: none">{{doc.noteID}}</div>
+			<br>
+			<div class="btn-group" role="group" aria-label="Basic example">
+				<!-- CRUD Functions and Expand Notes-->
+				<button class="btn btn-primary" (click)="shareNote(doc.noteID)"><i class="fa fa-share" aria-hidden="true"></i></button>&nbsp;
+				<button class="btn btn-primary" (click)="deleteNote(doc.noteID)"><i class="fa fa-trash-o" aria-hidden="true"></i></button>&nbsp;
+				<button type="button" class="btn btn-primary" (click)="setData(doc.title,doc.text,doc.noteID)" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
+			</div>
+		</div>
+	</div>
+	<div class="card col-sm">
+		<button class="btn btn-primary add-button" (click)="createNote()">
+			<i class="fa fa-plus-square fa-xs" aria-hidden="true"></i>
+		</button>
+	</div>
+</div>
+
+<!-- Modal for Notes -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<!-- Modal Header -->
+			<div class="modal-header">
+				<h5 class="modal-title" id="exampleModalLabel">{{this.title}}</h5>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+				<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+
+			<!-- Modal Body -->
+			<div class="modal-body">
+				<form>
+				<div class="form-group">
+					<label for="recipient-name" class="col-form-label">Note:</label>
+					<input type="text" class="form-control" id="recipient-name"  (change)="this.text = $event.target.value;" value="{{this.text}}">
+				</div>
+				</form>
+				<button class="btn btn-primary" (click)="speak()">Play</button>
+			</div>
+
+			<!-- Modal Footer-->
+			<div class="modal-footer">
+				<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+				<button type="button" class="btn btn-primary" (click)="editNote()"> Save</button>
+			</div>
+		</div>
+	</div>
+</div>
